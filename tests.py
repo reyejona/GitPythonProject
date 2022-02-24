@@ -1,8 +1,8 @@
 """
-Names:
+Names: Alyssa Comstock
 Date:
 Class: CS362 - Software Engineering II
-Assignment:
+Assignment: Group Project Part 2- Continuous Integration Workflow
 Description:
 """
 
@@ -50,6 +50,26 @@ class TestCase(unittest.TestCase):
         """
 
         self.assertEqual(conv_endian(954786, 'little'), 'A2 91 0E')
+
+    def test_little_endian_posi_2(self):
+        """
+        Function that tests returning the little endian hex value of
+        a positive decimal number 123.
+        Expected Hex value should be a string of '7B'
+        This is the same as the big endian format, since it's only
+        a 1 byte section.
+        """
+        self.assertEqual(conv_endian(123, 'little'), '7B')
+
+    def test_dec_hex_zero_value(self):
+        """
+        Function that tests if decimal value of 0 properly is converted
+        in to the correct hex value.  That is, a decimal value of 0
+        should be 00 in hex.
+        """
+
+        self.assertEqual(conv_endian(0), '00')
+
 
 
 if __name__ == '__main__':

@@ -1,8 +1,8 @@
 """
-Names:
+Names: Alyssa Comstock
 Date:
 Class: CS362 - Software Engineering II
-Assignment:
+Assignment: Group Project Part 2- Continuous Integration Workflow
 Description:
 """
 
@@ -26,21 +26,22 @@ def conv_endian(num, endian='big'):
 
     if endian != 'big' and endian != "little":
         # check to see if the endian value is valid
-        # before anything is calculated
         return None
 
-    temp = num
-    hex_nums = ''
+    sign = ''
+    if num < 0:
+        sign = '-'
+        num = abs(num)
+    elif num == 0:
+        # we do not need to convert to hex
+        # since it's always going to be 00
+        return '00'
+
     result = []
-    hex_dict = {
-        0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7, 8: 8, 9: 9, 10: 'A', 11: 'B', 12: 'C', 13: 'D', 14: 'E', 15: 'F'
-    }
-    
-    while temp != 0:
-        # Calculate the value first, and the direction will be
-        # reversed based on what endian direction it is
-        hex_nums += str(hex_dict[temp % 16])
-        temp = temp//16
+    hex_nums = dec_to_hex_string(num)
+
+    # at this point hex_nums should be a continuous
+    # string with no spaces in big endian direction
     for i in reversed(range(0, len(hex_nums), 2)):
         # get each byte segment which is 2 digit values in the string
         if len(hex_nums[i:i + 2]) < 2:
@@ -52,9 +53,40 @@ def conv_endian(num, endian='big'):
     if endian == "little":
         # if its little endian the values need to be reversed
         result = result[::-1]
+    if sign:
+        result.append(sign)
     return " ".join(result)
+
+
+def dec_to_hex_string(num):
+    """
+    Helper function for the conv_endian function. Takes a decimal value
+    and converts it to a hex string
+    :param num: decimal value
+    :return: string hex value in big endian format
+    """
+
+    hex_nums = ''
+    # At 10-15 inclusive hex values become representations from A-F
+    # so, we are going to use a dictionary look up for this.
+    hex_dict = {10: 'A', 11: 'B', 12: 'C', 13: 'D', 14: 'E', 15: 'F'}
+
+    while num != 0:
+        # Calculate the value first, and the direction will be
+        # reversed based on what endian direction it is
+        if num % 16 in hex_dict.keys():
+            # if the value is between [10,15] inclusive
+            # check the hex_dict value
+            hex_nums += str(hex_dict[num % 16])
+        else:
+            # value is less than 10, add it as a string
+            hex_nums += str(num % 16)
+        num = num // 16
+    return hex_nums
 
 
 if __name__ == '__main__':
     print(conv_endian(123))
     print(conv_endian(954786))
+    print("zero", conv_endian(0))
+    print(conv_endian(890))
