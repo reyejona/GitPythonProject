@@ -70,6 +70,32 @@ class TestCase(unittest.TestCase):
 
         self.assertEqual(conv_endian(0), '00')
 
+    def test_endian_incorrect(self):
+        """
+        Test that sees is the incorrect endian value is correctly
+        returned as None from the conv_endian function.
+        """
+
+        self.assertEqual(conv_endian(-954786, 'small'), None)
+
+    def test_negative_big_endian_value_1(self):
+        """
+        Function that tests if a decimal value of -954786 properly
+        returns a negative value. -954786 would be -0E 91 A2 in
+        big endian.
+        """
+
+        self.assertEqual(conv_endian(-954786), '-0E 91 A2')
+
+    def test_negative_little_endian_value_1(self):
+        """
+        Function that tests if a decimal value of -954786 properly
+        returns a negative value. -954786 would be -A2 91 0E in
+        little endian.
+        """
+
+        self.assertEqual(conv_endian(-954786, 'little'), '-A2 91 0E')
+
 
 if __name__ == '__main__':
     unittest.main()

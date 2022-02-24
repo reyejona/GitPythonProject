@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4ed5f56e-a3d8-4679-abca-ac7070c5f3bd" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task.py" beforeDir="false" afterPath="$PROJECT_DIR$/task.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -11,6 +13,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -27,7 +37,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
-  <component name="RunManager" selected="Python tests.Python tests for tests.TestCase">
+  <component name="RunManager" selected="Python tests.Python tests in tests.py">
     <configuration name="task" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="CS362group20" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -50,7 +60,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for tests.TestCase" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for tests.TestCase.test_negative_big_endian_value" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="CS362group20" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -60,11 +70,11 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests.TestCase&quot;" />
+      <option name="_new_target" value="&quot;tests.TestCase.test_negative_big_endian_value&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for tests.TestCase.test_dec_hex_zero_value" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for tests.TestCase.test_negative_big_endian_value_1" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="CS362group20" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -74,11 +84,11 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests.TestCase.test_dec_hex_zero_value&quot;" />
+      <option name="_new_target" value="&quot;tests.TestCase.test_negative_big_endian_value_1&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for tests.TestCase.test_little_endian_posi_1" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for tests.TestCase.test_negative_little_endian_value_1" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="CS362group20" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -87,9 +97,8 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests.TestCase.test_little_endian_posi_1&quot;" />
+      <option name="_new_target" value="&quot;tests.TestCase.test_negative_little_endian_value_1&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
@@ -110,11 +119,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Python tests for tests.TestCase" />
         <item itemvalue="Python tests.Python tests in tests.py" />
         <item itemvalue="Python.task" />
-        <item itemvalue="Python tests.Python tests for tests.TestCase.test_dec_hex_zero_value" />
-        <item itemvalue="Python tests.Python tests for tests.TestCase.test_little_endian_posi_1" />
+        <item itemvalue="Python tests.Python tests for tests.TestCase.test_negative_little_endian_value_1" />
+        <item itemvalue="Python tests.Python tests for tests.TestCase.test_negative_big_endian_value_1" />
+        <item itemvalue="Python tests.Python tests for tests.TestCase.test_negative_big_endian_value" />
       </list>
     </recent_temporary>
   </component>

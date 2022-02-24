@@ -28,34 +28,15 @@ def conv_endian(num, endian='big'):
         # check to see if the endian value is valid
         return None
 
-    sign = ''
-    if num < 0:
-        sign = '-'
-        num = abs(num)
-    elif num == 0:
+    if num == 0:
         # we do not need to convert to hex
         # since it's always going to be 00
         return '00'
 
-    result = []
-    hex_nums = dec_to_hex_string(num)
+    hex_nums, sign = dec_to_hex_string(num)
+    result = format_hex(hex_nums, endian, sign)
 
-    # at this point hex_nums should be a continuous
-    # string with no spaces in big endian direction
-    for i in reversed(range(0, len(hex_nums), 2)):
-        # get each byte segment which is 2 digit values in the string
-        if len(hex_nums[i:i + 2]) < 2:
-            # if it is a single digit then a 0 is added
-            result.append("0" + hex_nums[i:i + 2])
-        else:
-            result.append(hex_nums[i:i + 2][::-1])
-
-    if endian == "little":
-        # if its little endian the values need to be reversed
-        result = result[::-1]
-    if sign:
-        result.append(sign)
-    return " ".join(result)
+    return result
 
 
 def dec_to_hex_string(num):
@@ -65,6 +46,11 @@ def dec_to_hex_string(num):
     :param num: decimal value
     :return: string hex value in big endian format
     """
+
+    sign = ''
+    if num < 0:
+        sign = '-'
+        num = abs(num)
 
     hex_nums = ''
     # At 10-15 inclusive hex values become representations from A-F
@@ -82,11 +68,38 @@ def dec_to_hex_string(num):
             # value is less than 10, add it as a string
             hex_nums += str(num % 16)
         num = num // 16
-    return hex_nums
+    return hex_nums, sign
+
+
+def format_hex(hex_nums, endian, sign):
+    """
+    Helper function that takes the hex value returned from dec_to_hex_string
+    which is a string of hex values and formats them in to a string
+    where each byte is joined with a space in between. Sign is included
+    if the value is negative.
+    :param hex_nums: string of values that need to be formatted
+    :param endian: direction the bytes need to be arranged
+    :param sign: sign of the value positive or negative
+    :return: correctly formatted hex string with a space
+    in between the bytes and the sign value properly added.
+    """
+
+    result = []
+    for i in reversed(range(0, len(hex_nums), 2)):
+        # get each byte segment which is 2 digit values in the string
+        if len(hex_nums[i:i + 2]) < 2:
+            # if it is a single digit then a 0 is added
+            result.append("0" + hex_nums[i:i + 2])
+        else:
+            result.append(hex_nums[i:i + 2][::-1])
+
+    if endian == "little":
+        # if its little endian the values need to be reversed
+        result = result[::-1]
+
+    result[0] = sign + result[0]
+    return " ".join(result)
 
 
 if __name__ == '__main__':
-    print(conv_endian(123))
-    print(conv_endian(954786))
-    print("zero", conv_endian(0))
-    print(conv_endian(890))
+    print(conv_endian(-123))
