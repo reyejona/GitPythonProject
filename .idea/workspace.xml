@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4ed5f56e-a3d8-4679-abca-ac7070c5f3bd" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task.py" beforeDir="false" afterPath="$PROJECT_DIR$/task.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -29,7 +27,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
-  <component name="RunManager" selected="Python tests.Python tests in tests.py">
+  <component name="RunManager" selected="Python tests.Python tests for tests.TestCase">
     <configuration name="task" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="CS362group20" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -112,10 +110,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.Python tests for tests.TestCase" />
         <item itemvalue="Python tests.Python tests in tests.py" />
         <item itemvalue="Python.task" />
         <item itemvalue="Python tests.Python tests for tests.TestCase.test_dec_hex_zero_value" />
-        <item itemvalue="Python tests.Python tests for tests.TestCase" />
         <item itemvalue="Python tests.Python tests for tests.TestCase.test_little_endian_posi_1" />
       </list>
     </recent_temporary>

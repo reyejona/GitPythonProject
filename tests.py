@@ -71,6 +71,5 @@ class TestCase(unittest.TestCase):
         self.assertEqual(conv_endian(0), '00')
 
 
-
 if __name__ == '__main__':
     unittest.main()
