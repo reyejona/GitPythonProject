@@ -1,5 +1,5 @@
 """
-Names: Alyssa Comstock
+Names: Alyssa Comstock, Calvin Hoo
 Date:
 Class: CS362 - Software Engineering II
 Assignment: Group Project Part 2- Continuous Integration Workflow
@@ -12,7 +12,41 @@ def conv_num(num_str):
 
 
 def my_datetime(num_sec):
-    pass
+    """
+    Function that takes an integer value representing the the number of seconds
+    since the epoch (Jan 01, 1970) and converts and returns a string containing
+    the date from the epoch.
+    :param num_sec: The number of seconds since the epoch. Must be positive or
+    zero.
+    :return: String containing a date from the epoch. Format: MM-DD-YYYY.
+    """
+    # At time 0, return the first date of the epoch.
+    if num_sec == 0:
+        return "01-01-1970"
+    print(find_year_since_epoch(num_sec))
+    return
+
+
+def find_year_since_epoch(num_sec):
+    """
+    Function takes the time in seconds since the epoch and returns the year
+    that the date falls on.
+    """
+    seconds_in_year = 60 * 60 * 24 * 365.2425
+    est_years_since = num_sec // seconds_in_year
+    year_since = 1970 + est_years_since
+    return int(year_since)
+
+
+def is_leap_year(year):
+    """
+    Function checks if the time in seconds since the epoch falls on a leap
+    year. Returns True if so, False otherwise.
+    """
+    # Number of seconds in a year.
+    seconds_in_year = 60 * 60 * 24 * 365
+    
+    return seconds_in_year
 
 
 def conv_endian(num, endian='big'):
@@ -103,4 +137,5 @@ def format_hex(hex_nums, endian, sign):
 
 
 if __name__ == '__main__':
-    print(conv_endian(-123))
+    # print(conv_endian(-123))
+    print(my_datetime(1645831100))
