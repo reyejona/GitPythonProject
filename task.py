@@ -68,6 +68,7 @@ def dec_to_hex_string(num):
             # value is less than 10, add it as a string
             hex_nums += str(num % 16)
         num = num // 16
+
     return hex_nums, sign
 
 
