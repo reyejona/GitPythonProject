@@ -134,10 +134,21 @@ class TestCase(unittest.TestCase):
     def test_my_datetime_special_nonleapyear(self):
         """
         Function tests a random day on a year that is divisible by 4
-        and is divisible by 100. (09-28-2100 at 00:00:00)
+        and is divisible by 100 making this year a non-leap year.
+        (09-28-2100 at 00:00:00)
         """
         test_sec = 4125772800
         expected_date = "09-28-2100"
+        self.assertEqual(my_datetime(test_sec), expected_date)
+
+    def test_my_datetime_special_leapyear(self):
+        """
+        Function tests a random day on a year that is divisible by 4
+        and is divisible by 400 making this year a leap year.
+        (09-28-2400 at 00:00:00)
+        """
+        test_sec = 13592880000
+        expected_date = "09-28-2400"
         self.assertEqual(my_datetime(test_sec), expected_date)
 
     def test_my_datetime_last_leapyear_before9999(self):
