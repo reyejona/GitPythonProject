@@ -1,5 +1,5 @@
 """
-Names: Alyssa Comstock, Calvin Hoo
+Names: Alyssa Comstock
 Date:
 Class: CS362 - Software Engineering II
 Assignment: Group Project Part 2- Continuous Integration Workflow
@@ -23,19 +23,41 @@ def my_datetime(num_sec):
     # At time 0, return the first date of the epoch.
     if num_sec == 0:
         return "01-01-1970"
+
+    date_data = {
+        "month": None,
+        "day": None,
+        "year": None,
+        "days_since": None,
+        "is_leap_year": None
+    }
     print(find_year_since_epoch(num_sec))
+    print(is_leap_year(1977))
     return
 
+def find_month(num_sec, leapYear):
+    """
+    """
 
-def find_year_since_epoch(num_sec):
+
+def find_year(num_sec, date_data):
     """
     Function takes the time in seconds since the epoch and returns the year
     that the date falls on.
     """
-    seconds_in_year = 60 * 60 * 24 * 365.2425
-    est_years_since = num_sec // seconds_in_year
-    year_since = 1970 + est_years_since
-    return int(year_since)
+    # Calculate the rough number of seconds in a year.
+    seconds_in_year = 60 * 60 * 24
+    # Calculate the estimated years since the epoch.
+    days_since_epoc = int(num_sec // seconds_in_year) + 1
+    curr_year = 1970
+    
+    while days_since_epoc > 365:
+        if is_leap_year(curr_year) and days_since_epoc > 366:
+            days_since_epoc -= 366
+            curr_year += 1
+        if not is_leap_year(curr_year):
+            days_since_epoc -= 365
+            curr_year += 1
 
 
 def is_leap_year(year):
@@ -43,10 +65,10 @@ def is_leap_year(year):
     Function checks if the time in seconds since the epoch falls on a leap
     year. Returns True if so, False otherwise.
     """
-    # Number of seconds in a year.
-    seconds_in_year = 60 * 60 * 24 * 365
-    
-    return seconds_in_year
+    # To determine if the year falls on a leap year. Subtract 1972 (the first
+    # leap year) since the epoch and modulo the difference by 4. The year is a
+    # leap year if it is divisible by 4.
+    return ((year - 1972) % 4) == 0
 
 
 def conv_endian(num, endian='big'):
@@ -138,4 +160,4 @@ def format_hex(hex_nums, endian, sign):
 
 if __name__ == '__main__':
     # print(conv_endian(-123))
-    print(my_datetime(1645831100))
+    print(my_datetime(253375602708))
