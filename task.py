@@ -31,16 +31,18 @@ def my_datetime(num_sec):
         "days_since": None,
         "is_leap_year": None
     }
-    print(find_year_since_epoch(num_sec))
-    print(is_leap_year(1977))
+    find_year_and_if_leap_year(num_sec, date_data)
+    print(date_data)
     return
+
 
 def find_month(num_sec, leapYear):
     """
     """
+    pass
 
 
-def find_year(num_sec, date_data):
+def find_year_and_if_leap_year(num_sec, date_data):
     """
     Function takes the time in seconds since the epoch and returns the year
     that the date falls on.
@@ -50,14 +52,20 @@ def find_year(num_sec, date_data):
     # Calculate the estimated years since the epoch.
     days_since_epoc = int(num_sec // seconds_in_year) + 1
     curr_year = 1970
-    
+
     while days_since_epoc > 365:
         if is_leap_year(curr_year) and days_since_epoc > 366:
             days_since_epoc -= 366
             curr_year += 1
-        if not is_leap_year(curr_year):
+        elif not is_leap_year(curr_year):
             days_since_epoc -= 365
             curr_year += 1
+        else:
+            break
+
+    date_data["year"] = curr_year
+    date_data["is_leap_year"] = is_leap_year(curr_year)
+    return
 
 
 def is_leap_year(year):
