@@ -11,6 +11,78 @@ from task import conv_endian
 
 
 class TestCase(unittest.TestCase):
+    """
+    Tests for conv_num function
+    """ 
+    # test a positive integer
+    def test_pos_integer(self):
+        self.assertEqual(conv_num("999442"), 999442)
+
+    def test_pos_integer2(self):
+        self.assertEqual(conv_num("23918"), 23918)
+
+    # test a negative integer
+    def test_neg_integer(self):
+        self.assertEqual(conv_num("-83984"), -83984)
+
+    # test a negative floating point number
+    def test_neg_float(self):
+        self.assertEqual(conv_num("-67.3488"), -67.3488)
+
+    # test a positive floating point number
+    def test_pos_float(self):
+        self.assertEqual(conv_num("792.990"), 792.990)
+
+    def test_float2(self):
+        self.assertAlmostEqual(conv_num("736.933121"), 736.933121)
+
+    # test non string number
+    def test_non_string(self):
+        self.assertIsNone(conv_num(4745))
+
+    # test non string type invalid
+    def test_non_string2(self):
+        self.assertIsNone(conv_num(1j))
+
+    # test empty string invalid
+    def test_empty(self):
+        self.assertIsNone(conv_num(""))
+
+    # test for more than 1 decimal point
+    def test_decimal_points(self):
+        self.assertIsNone(conv_num("012.2.14.2023"))
+
+    # test a decimal with integer but no decimal part
+    def test_integer_float(self):
+        self.assertEqual(conv_num('3455.'), 3455.0)
+
+    # test a hexadecimal value with invalid characters
+    def test_hex_invalid(self):
+        self.assertIsNone(conv_num("0xWAH34WQ"))
+
+    # test a positive hex
+    def test_pos_hex(self):
+        self.assertEqual(conv_num("0xA"), int(0xA))
+
+    # test lowercase hex
+    def test_hex_lower(self):
+        self.assertEqual(conv_num("0x09ad"), int(0x09ad))
+
+    # test a lowercase hex 2
+    def test_pos_hex2(self):
+        self.assertEqual(conv_num("0x1ab"), int(0x1ab))
+
+    # test a negative hex value
+    def test_neg_hex(self):
+        self.assertEqual(conv_num("-0x4BCF2"), int(-0x4BCF2))
+
+    # negative hex value #2
+    def test_neg_hex2(self):
+        self.assertEqual(conv_num("-0x98347abcd"), int(-0x98347abcd))
+
+    # Test a hex value without the "0x" prefix
+    def test_hex_no_0x(self):
+        self.assertIsNone(conv_num("12a3b4c5A"))
 
     def test1(self):
         self.assertTrue(True)
