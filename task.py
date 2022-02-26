@@ -28,29 +28,50 @@ def my_datetime(num_sec):
         "month": None,
         "day": None,
         "year": None,
-        "days_since": None,
+        "remain_days": None,
         "is_leap_year": None
     }
     find_year_and_if_leap_year(num_sec, date_data)
+    find_month_and_day(date_data)
     print(date_data)
     return
 
 
-def find_month(num_sec, leapYear):
+def find_month_and_day(date_data):
     """
+
     """
-    pass
+    days_in_months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+
+    remain_days = date_data["remain_days"]
+
+    for month, days in enumerate(days_in_months):
+        if remain_days <= days:
+            date_data["month"] = month + 1
+            date_data["day"] = remain_days
+            break
+        elif date_data["is_leap_year"] and month == 1:
+            if remain_days > 29:
+                remain_days -= (days + 1)
+            else:
+                date_data["month"] = month + 1
+                date_data["day"] = remain_days
+                break
+        else:
+            remain_days -= days
 
 
 def find_year_and_if_leap_year(num_sec, date_data):
     """
-    Function takes the time in seconds since the epoch and returns the year
-    that the date falls on.
+    Function takes in the number of seconds since the epoch and a date data
+    object and calculates the year the date falls on and whether or not
+    the year is a leap year. This information is placed in the date_data
+    object. Function does not return anything.
     """
-    # Calculate the rough number of seconds in a year.
-    seconds_in_year = 60 * 60 * 24
+    # Calculate the number of seconds in a day.
+    seconds_in_day = 60 * 60 * 24
     # Calculate the estimated years since the epoch.
-    days_since_epoc = int(num_sec // seconds_in_year) + 1
+    days_since_epoc = int(num_sec // seconds_in_day) + 1
     curr_year = 1970
 
     while days_since_epoc > 365:
@@ -64,8 +85,8 @@ def find_year_and_if_leap_year(num_sec, date_data):
             break
 
     date_data["year"] = curr_year
+    date_data["remain_days"] = days_since_epoc
     date_data["is_leap_year"] = is_leap_year(curr_year)
-    return
 
 
 def is_leap_year(year):
@@ -76,7 +97,7 @@ def is_leap_year(year):
     # To determine if the year falls on a leap year. Subtract 1972 (the first
     # leap year) since the epoch and modulo the difference by 4. The year is a
     # leap year if it is divisible by 4.
-    return ((year - 1972) % 4) == 0
+    return (year % 4 == 0) and (year % 100 != 0 or year % 400 == 0)
 
 
 def conv_endian(num, endian='big'):
@@ -168,4 +189,4 @@ def format_hex(hex_nums, endian, sign):
 
 if __name__ == '__main__':
     # print(conv_endian(-123))
-    print(my_datetime(253375602708))
+    print(my_datetime(201653971200))
