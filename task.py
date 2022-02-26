@@ -1,5 +1,5 @@
 """
-Names: Alyssa Comstock
+Names: Alyssa Comstock, Calvin Hoo
 Date:
 Class: CS362 - Software Engineering II
 Assignment: Group Project Part 2- Continuous Integration Workflow
