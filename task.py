@@ -70,10 +70,15 @@ def conv_num(num_str):
         # convert string lowercase into uppercase before converting to hex
         # enumerate will give 2 loop variables count (i), and index value (v)
         for i, v in enumerate(x.upper()):
-            hexadecimal = "0123456789ABCDEF"  # hex values in index 0-15
-            value = hexadecimal.index(v)  # value is decimal value equivalent of index
-            power = (len(x) - (i + 1))  # power of hex equivalent
-            ret += (value * 16 ** power)  # 16^power
+            # hex values put in equivalent index from 0-15
+            hexadecimal = "0123456789ABCDEF"  
+            # Convert hex value to decimal value equivalent
+            value = hexadecimal.index(v)  
+            # power of 16 for each hex based on hex string length
+            power = (len(x) - (i + 1))
+            # multiply each hex digit value by the equivalent power of 16 
+            # add together all values to turn into decimal
+            ret += (value * 16 ** power)  
             print(ret)
         return ret
 
