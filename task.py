@@ -37,15 +37,23 @@ def conv_num(num_str):
             # find the '.' split integer part from decimal part
             num, dec_part = num_str.split('.')
             # convert the decimal component
-            for digit in dec_part[::-1]:
+            for digit in dec_part[::-1]: # remove the decimal point
+                # divide each digit by 10 and add together to get result
                 decimal_result /= 10
                 for d in '0123456789':
+                    # while each string digit > d
+                    # loop through d adding +1
+                    #then divide result /10
                     decimal_result += digit > d
         # convert the integer part
         if decimal == 0 or decimal == 1:
             for digit in num:
+                # muliply each digit by 10 and add together to get result
                 result_int_float *= 10
                 for d in '0123456789':
+                    # while each string digit > d
+                    # loop through d adding +1
+                    # then multiply result * 10 
                     result_int_float += digit > d
         # add the integer and decimal to get floating point number
         if decimal == 1:
