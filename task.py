@@ -11,6 +11,7 @@ Description:
 # integers, floating point numbers and hexadecimals with prefix 0x
 # and convert it to a base 10 number
 
+
 def conv_num(num_str):
     # this function will receive a string representing a
     # floating point number or integer and convert it to a base 10 number
@@ -37,13 +38,13 @@ def conv_num(num_str):
             # find the '.' split integer part from decimal part
             num, dec_part = num_str.split('.')
             # convert the decimal component
-            for digit in dec_part[::-1]: # remove the decimal point
+            for digit in dec_part[::-1]:  # remove the decimal point
                 # divide each digit by 10 and add together to get result
                 decimal_result /= 10
                 for d in '0123456789':
                     # while each string digit > d
                     # loop through d adding +1
-                    #then divide result /10
+                    # then divide result /10
                     decimal_result += digit > d
         # convert the integer part
         if decimal == 0 or decimal == 1:
@@ -53,7 +54,7 @@ def conv_num(num_str):
                 for d in '0123456789':
                     # while each string digit > d
                     # loop through d adding +1
-                    # then multiply result * 10 
+                    # then multiply result * 10
                     result_int_float += digit > d
         # add the integer and decimal to get floating point number
         if decimal == 1:
@@ -71,14 +72,14 @@ def conv_num(num_str):
         # enumerate will give 2 loop variables count (i), and index value (v)
         for i, v in enumerate(x.upper()):
             # hex values put in equivalent index from 0-15
-            hexadecimal = "0123456789ABCDEF"  
+            hexadecimal = "0123456789ABCDEF"
             # Convert hex value to decimal value equivalent
-            value = hexadecimal.index(v)  
+            value = hexadecimal.index(v)
             # power of 16 for each hex based on hex string length
             power = (len(x) - (i + 1))
-            # multiply each hex digit value by the equivalent power of 16 
+            # multiply each hex digit value by the equivalent power of 16
             # add together all values to turn into decimal
-            ret += (value * 16 ** power)  
+            ret += (value * 16 ** power)
             print(ret)
         return ret
 
