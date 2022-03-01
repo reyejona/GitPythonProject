@@ -7,7 +7,7 @@ Description:
 """
 
 import unittest
-from task import conv_endian
+from task import conv_endian, conv_num
 
 
 class TestCase(unittest.TestCase):
