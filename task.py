@@ -1,11 +1,12 @@
 import re
 """
-Names: Alyssa Comstock
+Names: Alyssa Comstock, Jonathan Paul Reyes
 Date:
 Class: CS362 - Software Engineering II
 Assignment: Group Project Part 2- Continuous Integration Workflow
 Description:
 """
+
 
 """ conv_num(num_str)
     This function will receive a string that can represent
@@ -17,7 +18,6 @@ def conv_num(num_str):
     negative = False
     # check if not a string type or empty strings
     if type(num_str) != str or num_str == '':
-        print("no string or empty")
         return None
     # check for negative
     if num_str.startswith('-'):
@@ -58,13 +58,13 @@ def convert_hex(num_str, negative):
     ret = 0
     # convert string lowercase into uppercase before converting to hex
     # enumerate will give 2 loop variables count (i), and index value (v)
-    for i, v in enumerate(x.upper()):
+    for i, v in enumerate(num_str.upper()):
         # hex values put in equivalent index from 0-15
         hexadecimal = "0123456789ABCDEF"
         # Convert hex value to decimal value equivalent
         value = hexadecimal.index(v)
         # power of 16 for each hex based on hex string length
-        power = (len(x) - (i + 1))
+        power = (len(num_str) - (i + 1))
         # multiply each hex digit value by the equivalent power of 16
         # add together all values to turn into decimal
         ret += (value * 16 ** power)
@@ -93,6 +93,9 @@ def convert_int_float(num_str, negative):
     num = 0
     decimal_result = 0
     # if string with no decimal, is an integer
+    if decimal == 0:
+        # num_str should stay the same length
+        num = num_str
     if decimal == 1:
         # find the '.' split integer part from decimal part
         num, dec_part = num_str.split('.')
@@ -108,7 +111,7 @@ def convert_int_float(num_str, negative):
     # convert the integer part
     if decimal == 0 or decimal == 1:
         for digit in num:
-            # muliply each digit by 10 and add together to get result
+            # multiply each digit by 10 and add together to get result
             result_int_float *= 10
             for d in '0123456789':
                 # while each string digit > d
