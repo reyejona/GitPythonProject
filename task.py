@@ -7,78 +7,11 @@ Assignment: Group Project Part 2- Continuous Integration Workflow
 Description:
 """
 
-# this function will receive a string hex with 0x removed
-# and convert it to a decimal/integer value
-
-
-def convert_hex(num_str, negative):
-    print("convert hex")
-    ret = 0
-    # convert string lowercase into uppercase before converting to hex
-    # enumerate will give 2 loop variables count (i), and index value (v)
-    for i, v in enumerate(num_str.upper()):
-        hexadecimal = "0123456789ABCDEF"  # hex values in index 0-15
-        value = hexadecimal.index(v)  # value is decimal value of index
-        power = (len(num_str) - (i + 1))  # power of hex equivalent
-        ret += (value * 16 ** power)  # 16^power
-        print(ret)
-    if negative:
-        return ret * -1
-    else:
-        return ret
-
-
-# this function will receive a string representing a
-# floating point number or integer and convert it to a base 10 number
-
-
-def convert_int_float(num_str, negative):
-    decimal = 0
-    # find if there is decimal in num_str
-    for i in num_str:
-        if i == '.':
-            decimal += 1
-    # If more than 1 decimal, it is rejected
-    if decimal > 1:
-        print("more than 1 decimal rejected")
-        return None
-    result_int_float = 0
-    num = 0
-    decimal_result = 0
-    # if string with no decimal, is an integer
-    if decimal == 0:
-        # num_str should stay the same length
-        num = num_str
-    # if there is one decimal it is a floating type
-    if decimal == 1:
-        print("convert float")
-        # find the '.' split integer part from decimal part
-        num, dec_part = num_str.split('.')
-        # convert the decimal component
-        for digit in dec_part[::-1]:
-            decimal_result /= 10
-            for d in '0123456789':
-                decimal_result += digit > d
-    # convert the integer part
-    if decimal == 0 or decimal == 1:
-        for digit in num:
-            result_int_float *= 10
-            for d in '0123456789':
-                result_int_float += digit > d
-    # add the integer and decimal to get floating point number
-    if decimal == 1:
-        result_int_float = result_int_float + (decimal_result / 10)
-        print(result_int_float)
-    if negative:
-        return result_int_float * -1
-    else:
-        print(result_int_float)
-        return result_int_float
-
-    # this function will receive a string that can represent
-    # integers, floating point numbers and hexadecimals with prefix 0x
-    # and convert it to a base 10 number
-
+""" conv_num(num_str)
+    This function will receive a string that can represent
+    integers, floating point numbers or hexadecimals with prefix 0x
+    and convert it to a base 10 number.
+"""
 
 def conv_num(num_str):
     negative = False
@@ -100,7 +33,6 @@ def conv_num(num_str):
         if hex_chars.match(num_str):
             return convert_hex(num_str, negative)
         else:
-            print("reject non hex characters")
             # if character is not Hex it will return none
             return None
     else:
@@ -112,9 +44,84 @@ def conv_num(num_str):
             return convert_int_float(num_str, negative)
         else:
             # if string is not numerical or a '.' it will return none
-            print("string is not numerical or a '.'")
             return None
     return None
+
+""" Convert_hex()
+    this function will receive a string hex with 0x removed
+    and the negative sign
+    and convert it to a decimal/integer value
+"""
+
+
+def convert_hex(num_str, negative):
+    ret = 0
+    # convert string lowercase into uppercase before converting to hex
+    # enumerate will give 2 loop variables count (i), and index value (v)
+    for i, v in enumerate(x.upper()):
+        # hex values put in equivalent index from 0-15
+        hexadecimal = "0123456789ABCDEF"
+        # Convert hex value to decimal value equivalent
+        value = hexadecimal.index(v)
+        # power of 16 for each hex based on hex string length
+        power = (len(x) - (i + 1))
+        # multiply each hex digit value by the equivalent power of 16
+        # add together all values to turn into decimal
+        ret += (value * 16 ** power)
+    if negative:
+        return ret * -1
+    else:
+        return ret
+
+
+""" convert_int_float()
+    this function will receive a string representing a
+    floating point number or integer, negative sign
+    and convert it to a base 10 number
+"""
+
+
+def convert_int_float(num_str, negative):
+    decimal = 0
+    # find if there is decimal in num_str
+    for i in num_str:
+        if i == '.':
+            decimal += 1
+        if decimal > 1:
+            return None
+    result_int_float = 0
+    num = 0
+    decimal_result = 0
+    # if string with no decimal, is an integer
+    if decimal == 1:
+        # find the '.' split integer part from decimal part
+        num, dec_part = num_str.split('.')
+        # convert the decimal component
+        for digit in dec_part[::-1]:  # remove the decimal point
+            # divide each digit by 10 and add together to get result
+            decimal_result /= 10
+            for d in '0123456789':
+                # while each string digit > d
+                # loop through d adding +1
+                # then divide result /10
+                decimal_result += digit > d
+    # convert the integer part
+    if decimal == 0 or decimal == 1:
+        for digit in num:
+            # muliply each digit by 10 and add together to get result
+            result_int_float *= 10
+            for d in '0123456789':
+                # while each string digit > d
+                # loop through d adding +1
+                # then multiply result * 10
+                result_int_float += digit > d
+    # add the integer and decimal to get floating point number
+    if decimal == 1:
+        result_int_float = result_int_float + (decimal_result / 10)
+    if negative:
+        return result_int_float * -1
+    else:
+        return result_int_float
 
 
 def my_datetime(num_sec):
