@@ -14,6 +14,7 @@ Description:
     and convert it to a base 10 number.
 """
 
+
 def conv_num(num_str):
     negative = False
     # check if not a string type or empty strings
@@ -38,7 +39,7 @@ def conv_num(num_str):
     else:
         # use regex matching for finding valid integers and decimal
         # for floating point numbers
-        valid_digits = re.compile("^[0-9\.]+$")
+        valid_digits = re.compile(r"^[0-9\.]+$")
         # if valid integer or floating point number found, it is valid
         if valid_digits.match(num_str):
             return convert_int_float(num_str, negative)
@@ -46,6 +47,7 @@ def conv_num(num_str):
             # if string is not numerical or a '.' it will return none
             return None
     return None
+
 
 """ Convert_hex()
     this function will receive a string hex with 0x removed
