@@ -12,7 +12,7 @@ Description:
 # and convert it to a base 10 number
 
 
-def conv_num(num_str):
+def conv_num(num_str):  # noqa: C901
     # this function will receive a string representing a
     # floating point number or integer and convert it to a base 10 number
     def convert_int_float():
@@ -108,7 +108,7 @@ def conv_num(num_str):
     else:
         # use regex matching for finding valid integers and decimal
         # for floating point numbers
-        valid_digits = re.compile("^[0-9\.]+$")
+        valid_digits = re.compile("^[0-9\\.]+$")
         # if valid integer or floating point number found, it is valid
         if valid_digits.match(num_str):
             result = convert_int_float()

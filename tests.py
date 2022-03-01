@@ -13,7 +13,7 @@ from task import conv_endian, conv_num
 class TestCase(unittest.TestCase):
     """
     Tests for conv_num function
-    """ 
+    """
     def test_pos_integer(self):
         """
         Function that tests a positive integer string "999442".
