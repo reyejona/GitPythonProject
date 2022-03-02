@@ -8,14 +8,18 @@ Description:
 """
 
 
-""" conv_num(num_str)
-    This function will receive a string that can represent
+def conv_num(num_str):
+    """
+    conv_num()
+    Function will receive a string that can represent + or -
     integers, floating point numbers or hexadecimals with prefix 0x
     and convert it to a base 10 number.
-"""
-
-
-def conv_num(num_str):
+    Invalid formats: More than 1 decimal point.Strings with alpha not
+    part of hex number. Hex without prefix 0x. Non strings or empty
+    strings.
+    :param num_str: string of integer/float/hex number
+    :returns  base 10 number matching type sent
+    """
     negative = False
     decimal = 0
     # check if not a string type or empty strings
@@ -40,29 +44,30 @@ def conv_num(num_str):
     for i in num_str:
         if i == '.':
             decimal = 1
-    # # use regex matching for finding valid integers and decimal
-    # # for floating point numbers
-
+    # If floating point numbers
     if decimal == 1:
-        # valid_digits = re.compile(r"^[0-9\\.]+$")
-        # # if valid integer or floating point number found, it is valid
-        # if valid_digits.match(num_str):
         return convert_float(num_str, negative)
     else:
+        # use regex matching for finding valid integers
         integer_digits = re.compile(r"[0-9]+$")
         if integer_digits.match(num_str):
             return convert_integer(num_str, negative)
 
 
-""" Convert_hex()
-    this function will receive a string hex with 0x removed
-    and the negative sign
-    and convert it to a decimal/integer value
-"""
-
-
 def convert_hex(num_str, negative):
-    ret = 0
+    """
+    convert_hex()
+    Helper function will receive a string representing a
+    hexadecimal number with prefix "0x" removed. Puts the
+    string through a loop where each digit is given a hex
+    value and decimal value. The string is then turned
+    into a base 10 number.
+    :param num_str: string of hex number
+            negative: optional sign of value
+    :return result_hex: which is the base 10
+        representation of the string hex
+    """
+    result_hex = 0
     # convert string lowercase into uppercase before converting to hex
     # enumerate will give 2 loop variables count (i), and index value (v)
     for i, v in enumerate(num_str.upper()):
@@ -74,21 +79,25 @@ def convert_hex(num_str, negative):
         power = (len(num_str) - (i + 1))
         # multiply each hex digit value by the equivalent power of 16
         # add together all values to turn into decimal
-        ret += (value * 16 ** power)
+        result_hex += (value * 16 ** power)
     if negative:
-        return ret * -1
+        return result_hex * -1
     else:
-        return ret
-
-
-""" convert_float()
-    this function will receive a string representing a
-    floating point number, negative sign
-    and convert it to a base 10 number
-"""
+        return result_hex
 
 
 def convert_integer(num_str, negative):
+    """
+    convert_integer()
+    Helper function will receive a string representing a
+    integer and/or negative sign, loop through the string
+    multiply each digit by 10 and add together to convert
+     it to a base 10 number
+    :param num_str: string of integer either + or -
+            negative: optional sign of string integer
+    :return result_integer: which is the base 10
+        representation of the string integer
+    """
     result_integer = 0
     for digit in num_str:
         # multiply each digit by 10 and add together to get result
@@ -104,14 +113,18 @@ def convert_integer(num_str, negative):
         return result_integer
 
 
-""" convert_float()
-    this function will receive a string representing a
-    floating point number, negative sign
-    and convert it to a base 10 number
-"""
-
-
 def convert_float(num_str, negative):
+    """
+    convert_float()
+    Helper function will receive a string representing a
+    floating point number and/or negative sign, divide it
+    into the integer and decimal part then add together again
+    to convert it to a base 10 number
+    :param num_str: string of Float either + or -
+            negative: sign of string
+    :return final_result: which is the base 10 representation
+            of the float
+    """
     decimal = 0
     # find if there is decimal in num_str
     for char in num_str:
@@ -130,6 +143,7 @@ def convert_float(num_str, negative):
     if decimal == 1:
         # find the '.' split integer part from decimal part
         num, dec_part = num_str.split('.')
+        # convert the integer part
         result_int = convert_integer(num, negative)
         # convert the decimal component
         for digit in dec_part[::-1]:  # remove the decimal point
@@ -141,6 +155,7 @@ def convert_float(num_str, negative):
                 # then divide result /10
                 decimal_result += digit > d
     if negative:
+        # If neg turn negative to positive before adding to decimal
         result_int = (0 - result_int)
         decimal_result = decimal_result / 10
         final_result = decimal_result + result_int
