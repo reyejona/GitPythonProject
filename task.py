@@ -80,6 +80,7 @@ def convert_hex(num_str, negative):
     else:
         return ret
 
+
 """ convert_float()
     this function will receive a string representing a
     floating point number, negative sign
