@@ -171,6 +171,6 @@ def conv_endian(num, endian='big'):
 
     if len(result[0]) < 2:
         result[0] = '0'+result[0]
-        
+
     result = " ".join(result) if endian == "big" else " ".join(result[::-1])
     return sign + result
