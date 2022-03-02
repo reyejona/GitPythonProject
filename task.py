@@ -1,5 +1,7 @@
+import re
 """
-Names: Alyssa Comstock, Calvin Hoo
+=======
+Names: Alyssa Comstock, Jonathan Paul Reyes
 Date:
 Class: CS362 - Software Engineering II
 Assignment: Group Project Part 2- Continuous Integration Workflow
@@ -8,7 +10,163 @@ Description:
 
 
 def conv_num(num_str):
-    pass
+    """
+    conv_num()
+    Function will receive a string that can represent + or -
+    integers, floating point numbers or hexadecimals with prefix 0x
+    and convert it to a base 10 number.
+    Invalid formats: More than 1 decimal point.Strings with alpha not
+    part of hex number. Hex without prefix 0x. Non strings or empty
+    strings.
+    :param num_str: string of integer/float/hex number
+    :returns  base 10 number matching type sent
+    """
+    negative = False
+    decimal = 0
+    # check if not a string type or empty strings
+    if type(num_str) != str or num_str == '':
+        return None
+    # check for negative
+    if num_str.startswith('-'):
+        negative = True
+        # cut off the minus sign
+        num_str = num_str[1:]
+    # check for hexadecimal prefix
+    if num_str.startswith('0x'):
+        num_str = num_str[2:]  # start after '0x' prefix
+        # use regex matching for hexadecimal values
+        hex_chars = re.compile("^[0-9a-fA-F]+$")
+        # if hexadecimal value found after 0x, it is valid
+        if hex_chars.match(num_str):
+            return convert_hex(num_str, negative)
+        else:
+            # if character is not Hex it will return none
+            return None
+    for i in num_str:
+        if i == '.':
+            decimal = 1
+    # If floating point numbers
+    if decimal == 1:
+        return convert_float(num_str, negative)
+    else:
+        # use regex matching for finding valid integers
+        integer_digits = re.compile(r"[0-9]+$")
+        if integer_digits.match(num_str):
+            return convert_integer(num_str, negative)
+
+
+def convert_hex(num_str, negative):
+    """
+    convert_hex()
+    Helper function will receive a string representing a
+    hexadecimal number with prefix "0x" removed. Puts the
+    string through a loop where each digit is given a hex
+    value and decimal value. The string is then turned
+    into a base 10 number.
+    :param num_str: string of hex number
+            negative: optional sign of value
+    :return result_hex: which is the base 10
+        representation of the string hex
+    """
+    result_hex = 0
+    # convert string lowercase into uppercase before converting to hex
+    # enumerate will give 2 loop variables count (i), and index value (v)
+    for i, v in enumerate(num_str.upper()):
+        # hex values put in equivalent index from 0-15
+        hexadecimal = "0123456789ABCDEF"
+        # Convert hex value to decimal value equivalent
+        value = hexadecimal.index(v)
+        # power of 16 for each hex based on hex string length
+        power = (len(num_str) - (i + 1))
+        # multiply each hex digit value by the equivalent power of 16
+        # add together all values to turn into decimal
+        result_hex += (value * 16 ** power)
+    if negative:
+        return result_hex * -1
+    else:
+        return result_hex
+
+
+def convert_integer(num_str, negative):
+    """
+    convert_integer()
+    Helper function will receive a string representing a
+    integer and/or negative sign, loop through the string
+    multiply each digit by 10 and add together to convert
+     it to a base 10 number
+    :param num_str: string of integer either + or -
+            negative: optional sign of string integer
+    :return result_integer: which is the base 10
+        representation of the string integer
+    """
+    result_integer = 0
+    for digit in num_str:
+        # multiply each digit by 10 and add together to get result
+        result_integer *= 10
+        for d in '0123456789':
+            # while each string digit > d
+            # loop through d adding +1
+            # then multiply result * 10
+            result_integer += digit > d
+    if negative:
+        return result_integer * -1
+    else:
+        return result_integer
+
+
+def convert_float(num_str, negative):
+    """
+    convert_float()
+    Helper function will receive a string representing a
+    floating point number and/or negative sign, divide it
+    into the integer and decimal part then add together again
+    to convert it to a base 10 number
+    :param num_str: string of Float either + or -
+            negative: sign of string
+    :return final_result: which is the base 10 representation
+            of the float
+    """
+    decimal = 0
+    # find if there is decimal in num_str
+    for char in num_str:
+        if char == '.':
+            decimal += 1
+        if decimal > 1:
+            return None
+    result_int = 0
+    num = 0
+    decimal_result = 0
+    final_result = 0
+    # if string with no decimal, is an integer
+    if decimal == 0:
+        # num_str should stay the same length
+        num = num_str
+    if decimal == 1:
+        # find the '.' split integer part from decimal part
+        num, dec_part = num_str.split('.')
+        # convert the integer part
+        result_int = convert_integer(num, negative)
+        # convert the decimal component
+        for digit in dec_part[::-1]:  # remove the decimal point
+            # divide each digit by 10 and add together to get result
+            decimal_result /= 10
+            for d in '0123456789':
+                # while each string digit > d
+                # loop through d adding +1
+                # then divide result /10
+                decimal_result += digit > d
+    if negative:
+        # If neg turn negative to positive before adding to decimal
+        result_int = (0 - result_int)
+        decimal_result = decimal_result / 10
+        final_result = decimal_result + result_int
+        return final_result * -1
+    if decimal == 1:
+        decimal_result = decimal_result / 10
+        final_result = decimal_result + result_int
+        return final_result
+    else:
+        return final_result
 
 
 def my_datetime(num_sec):
