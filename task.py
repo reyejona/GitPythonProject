@@ -1,12 +1,12 @@
-import re
 """
 Group #20
 Names: Alyssa Comstock, Calvin Hoo, Jonathan Paul Reyes
 Date: March 7, 2022
 Class: CS362 - Software Engineering II
 Assignment: Group Project Part 2- Continuous Integration Workflow
-
 """
+
+import re
 
 
 def conv_num(num_str):
