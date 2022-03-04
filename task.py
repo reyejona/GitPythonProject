@@ -1,12 +1,12 @@
-import re
 """
 Group #20
 Names: Alyssa Comstock, Calvin Hoo, Jonathan Paul Reyes
 Date: March 7, 2022
 Class: CS362 - Software Engineering II
 Assignment: Group Project Part 2- Continuous Integration Workflow
-
 """
+
+import re
 
 
 def conv_num(num_str):
@@ -280,6 +280,8 @@ def is_leap_year(year):
     """
     Function checks if the time in seconds since the epoch falls on a leap
     year. Returns True if so, False otherwise.
+    :param year: Integer value representing the year being examined.
+    :return: Bool value True if year is a leap year, False otherwise.
     """
     # Is a leap year if the year is divisble by 4 and either not divisible
     # by 100 or divisible by 400.

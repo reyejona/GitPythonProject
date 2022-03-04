@@ -82,8 +82,8 @@ class TestCase(unittest.TestCase):
 
     def test_decimal_points(self):
         """
-        Function that tests an string floating point "012.2.14.2023" with > 1 decimals.
-        Expected return should be "None"
+        Function that tests an string floating point "012.2.14.2023" with > 1
+        decimals. Expected return should be "None"
         """
         self.assertIsNone(conv_num("012.2.14.2023"))
 
@@ -138,13 +138,10 @@ class TestCase(unittest.TestCase):
 
     def test_hex_no_0x(self):
         """
-        Function that tests a string hex value "12a3b4c5A" which has no 0x prefix
-        Expected return should be "None"
+        Function that tests a string hex value "12a3b4c5A" which has no 0x
+        prefix. Expected return should be "None"
         """
         self.assertIsNone(conv_num("12a3b4c5A"))
-
-    def test1(self):
-        self.assertTrue(True)
 
     def test_big_endian_posi_1(self):
         """
